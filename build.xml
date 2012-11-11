@@ -41,27 +41,27 @@
   -->
   <!-- PHPUnitの設定 -->
   <target name="test">
-    <phpunit haltonfailure="true" printsummary="true">
+    <phpunit3 haltonfailure="true" printsummary="true">
       <batchtest>
         <fileset dir="t/">
           <include name="*Test.php"/>
         </fileset>
       </batchtest>
-    </phpunit>
+    </phpunit3>
   </target>
 
   <!-- カバレッジリポートの設定 -->
   <target name="coverage" depends="clean">
-    <mkdir dir="reports/tests" />
-    <mkdir dir="clover" />
-    <coverage-setup database="reports/coverage.db">
+    <mkdir dir="build/reports/tests" />
+    <mkdir dir="build/reports/clover" />
+    <coverage-setup database="build/reports/coverage.db">
       <fileset dir="classes/">
         <include name="**/*.php"/>
       </fileset>
     </coverage-setup>
     <phpunit haltonfailure="true" printsummary="true" codecoverage="true">
-      <formatter todir="reports" type="clover"/>
-      <formatter todir="reports" type="xml"/>
+      <formatter todir="build/reports" type="clover"/>
+      <formatter todir="build/reports" type="xml"/>
       <batchtest>
         <fileset dir="t/">
           <include name="*Test.php"/>
@@ -69,7 +69,7 @@
       </batchtest>
     </phpunit>
     <coverage-report outfile="build/reports/coverage.xml">
-      <report todir="clover" />
+      <report todir="build/reports/clover" />
     </coverage-report>
   </target>
 

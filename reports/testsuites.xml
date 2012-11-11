@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites>
-  <testsuite name="AllTests" tests="1" assertions="4" failures="0" errors="0" time="0.044882">
-    <testsuite name="MemberTest" file="/Users/t_ishida/src/jenkins-sample/t/MemberTest.php" tests="1" assertions="4" failures="0" errors="0" time="0.044882">
-      <testcase name="testFillByFacebook" class="MemberTest" file="/Users/t_ishida/src/jenkins-sample/t/MemberTest.php" line="10" assertions="4" time="0.044882"/>
-    </testsuite>
-  </testsuite>
-</testsuites>
