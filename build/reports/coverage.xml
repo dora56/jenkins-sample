@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snapshot methodcount="6" methodscovered="6" statementcount="9" statementscovered="9" totalcount="15" totalcovered="15">
+  <package name="default" methodcount="6" methodscovered="6" statementcount="9" statementscovered="9" totalcount="15" totalcovered="15">
+    <class name="Member" methodcount="6" methodscovered="6" statementcount="9" statementscovered="9" totalcount="15" totalcovered="15">
+      <sourcefile name="Member.php" sourcefile="/Users/t_ishida/src/jenkins-sample/classes/Member.php">
+        <sourceline coveredcount="0">&lt;?php</sourceline>
+        <sourceline coveredcount="0">require_once dirname (__FILE__) . '/../vendor/facebook/facebook.php';</sourceline>
+        <sourceline coveredcount="0" startclass="1">class Member {</sourceline>
+        <sourceline coveredcount="0">  private $facecbook = null;</sourceline>
+        <sourceline coveredcount="0">  private $name = null;</sourceline>
+        <sourceline coveredcount="0">  private $email = null;</sourceline>
+        <sourceline coveredcount="0">  private $facebookID = null;</sourceline>
+        <sourceline coveredcount="0"></sourceline>
+        <sourceline coveredcount="0">  public function __construct ( $fb = null ) {</sourceline>
+        <sourceline coveredcount="1">    $this-&gt;setFacebook ( $fb );</sourceline>
+        <sourceline coveredcount="0">  }</sourceline>
+        <sourceline coveredcount="0"></sourceline>
+        <sourceline coveredcount="0">  public function setFacebook ( $fb ) {</sourceline>
+        <sourceline coveredcount="1">    $this-&gt;facebook = $fb;</sourceline>
+        <sourceline coveredcount="0">  }</sourceline>
+        <sourceline coveredcount="0"></sourceline>
+        <sourceline coveredcount="0">  public function getName () {</sourceline>
+        <sourceline coveredcount="1">    return $this-&gt;name;</sourceline>
+        <sourceline coveredcount="0">  }</sourceline>
+        <sourceline coveredcount="0"></sourceline>
+        <sourceline coveredcount="0">  public function getFacebookID () {</sourceline>
+        <sourceline coveredcount="1">    return $this-&gt;facebookID;</sourceline>
+        <sourceline coveredcount="0">  }</sourceline>
+        <sourceline coveredcount="0"></sourceline>
+        <sourceline coveredcount="0">  public function getMailAddress () {</sourceline>
+        <sourceline coveredcount="1">    return $this-&gt;email;</sourceline>
+        <sourceline coveredcount="0">  }</sourceline>
+        <sourceline coveredcount="0">  public function fillByFacebook () {</sourceline>
+        <sourceline coveredcount="1">    $me = $this-&gt;facebook-&gt;api ( '/me' );</sourceline>
+        <sourceline coveredcount="1">    $this-&gt;name = $me-&gt;name;</sourceline>
+        <sourceline coveredcount="1">    $this-&gt;facebookID = $me-&gt;id;</sourceline>
+        <sourceline coveredcount="1">    $this-&gt;email = $me-&gt;email;</sourceline>
+        <sourceline coveredcount="0">  }</sourceline>
+        <sourceline coveredcount="0">}</sourceline>
+      </sourcefile>
+    </class>
+  </package>
+</snapshot>

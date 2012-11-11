@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<project name="jenkins-sample" basedir="." default="test">
+  <target name="clean">
+    <delete dir="reports" includeemptydirs="true" />
+    <delete dir="clover" includeemptydirs="true" />
+  </target>
+  <!-- 設定ファイルを開発環境用から本番環境用にコピーする -->
+  <target name="deploy">
+    <phingcall target="clean"></phingcall>
+    <phingcall target="test"></phingcall>
+    <copy 
+      file="config/app.yml.product"
+      tofile="config/app.yml"
+      overwrite="true" />
+  </target>
+
+  <!-- PMDの設定 -->
+  <target name="pmd">
+    <phpmd rulesets="codesize,unusedcode,design,naming">
+      <fileset dir="classes/" >
+        <include name="**/*.php" />
+      </fileset>
+      <formatter 
+        type="xml"
+        outfile="build/reports/pmd.xml" />
+    </phpmd>
+  </target>
+
+  <!-- CPDの設定 -->
+  <!--
+  <target name="phpcpd">
+    <phpcpd minTokens="10">
+      <fileset dir="classes/">
+        <exclude name="*.php"/>
+      </fileset>
+      <formatter 
+        type="xml"
+        outfile="${basedir}/build/reports/pmd.xml" />
+    </phpcpd>
+  </target>
+  -->
+  <!-- PHPUnitの設定 -->
+  <target name="test">
+    <phpunit haltonfailure="true" printsummary="true">
+      <batchtest>
+        <fileset dir="t/">
+          <include name="*Test.php"/>
+        </fileset>
+      </batchtest>
+    </phpunit>
+  </target>
+
+  <!-- カバレッジリポートの設定 -->
+  <target name="coverage" depends="clean">
+    <mkdir dir="reports/tests" />
+    <mkdir dir="clover" />
+    <coverage-setup database="reports/coverage.db">
+      <fileset dir="classes/">
+        <include name="**/*.php"/>
+      </fileset>
+    </coverage-setup>
+    <phpunit haltonfailure="true" printsummary="true" codecoverage="true">
+      <formatter todir="reports" type="clover"/>
+      <formatter todir="reports" type="xml"/>
+      <batchtest>
+        <fileset dir="t/">
+          <include name="*Test.php"/>
+        </fileset>
+      </batchtest>
+    </phpunit>
+    <coverage-report outfile="build/reports/coverage.xml">
+      <report todir="clover" />
+    </coverage-report>
+  </target>
+
+  <!-- PHPDoc出力の設定 -->
+  <target name="phpdoc">
+    <phpdoc title="SAT Library Documentation"
+      destdir="build/apidocs"
+      sourcecode="false"
+      output="HTML:Smarty:PHP">
+      <fileset dir="classes/">
+        <include name="**/*.php" />
+      </fileset>
+      <projdocfileset dir=".">
+        <include name="README" />
+        <include name="INSTALL" />
+        <include name="CHANGELOG" />
+      </projdocfileset>
+    </phpdoc>
+  </target>
+</project>
