@@ -35,7 +35,7 @@
       </fileset>
       <formatter 
         type="xml"
-        outfile="${basedir}/build/reports/pmd.xml" />
+        outfile="build/reports/pmd.xml" />
     </phpcpd>
   </target>
   -->
