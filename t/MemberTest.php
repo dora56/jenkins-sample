@@ -8,6 +8,7 @@ class MemberTest extends PHPUnit_Framework_TestCase {
   }
 
   public function testFillByFacebook () {
+    $this->assertTrue(false);
     $facebook = $this->getMockBuilder ( 'Facebook' )
       ->disableOriginalConstructor ()
       ->setMethods ( array ( 'api' ) )
